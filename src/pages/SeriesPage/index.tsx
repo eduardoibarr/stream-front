@@ -1,16 +1,16 @@
 import { useState } from "react";
-import MovieList from "../../components/MovieList";
 import Pagination from "../../components/Pagination";
 import SearchBar from "../../components/SearchBar";
 import { LoadingSpin } from "../../components/Loading";
-import { usePopularMovies } from "../../hooks/use-movies";
+import { usePopularSeries } from "../../hooks/use-series";
+import SeriesList from "../../components/SeriesList";
 
-const MoviesPage = () => {
+const SeriesPage = () => {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [genre, setGenre] = useState<string | undefined>(undefined);
 
-  const { data, isLoading, error } = usePopularMovies({ page, query, genre });
+  const { data, isLoading, error } = usePopularSeries({ page, query, genre });
 
   const handleSearch = (term: string) => {
     setQuery(term);
@@ -53,7 +53,7 @@ const MoviesPage = () => {
   return (
     <div className="bg-gray-900 min-h-screen py-8 px-4">
       <h1 className="text-4xl font-extrabold text-center text-white mb-10">
-        Filmes Populares
+        Séries Populares
       </h1>
 
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4 mb-8">
@@ -73,10 +73,10 @@ const MoviesPage = () => {
       </div>
 
       {data && data.results && data.results.length > 0 ? (
-        <MovieList movies={data.results} />
+        <SeriesList series={data.results} />
       ) : (
         <div className="text-center text-gray-500 mt-10">
-          Nenhum filme encontrado
+          Nenhuma série encontrada
         </div>
       )}
 
@@ -91,4 +91,4 @@ const MoviesPage = () => {
   );
 };
 
-export default MoviesPage;
+export default SeriesPage;

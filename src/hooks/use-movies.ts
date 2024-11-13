@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchPopularMovies, fetchMovieById } from "../services/movieService";
 import { Movie, MovieParams } from "../interfaces/movie";
+import { fetchMovieById, fetchPopularMovies } from "../services/movie.service";
 
 export const usePopularMovies = (params: MovieParams) => {
   return useQuery({

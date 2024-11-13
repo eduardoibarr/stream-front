@@ -33,17 +33,9 @@ const Pagination: FC<PaginationProps> = ({
   return (
     <div className="flex justify-center mt-8 space-x-2">
       <button
-        onClick={() => onPageChange(1)}
-        disabled={currentPage === 1}
-        className="bg-gray-700 text-white px-3 py-1 rounded"
-      >
-        {"<<"}
-      </button>
-
-      <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="bg-gray-700 text-white px-3 py-1 rounded"
+        className="bg-gray-700 text-white px-3 py-1 rounded hover:bg-red-500 disabled:bg-gray-600 transition-colors duration-300"
       >
         Anterior
       </button>
@@ -52,10 +44,10 @@ const Pagination: FC<PaginationProps> = ({
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`px-3 py-1 rounded ${
+          className={`px-3 py-1 rounded transition-colors duration-300 ${
             page === currentPage
-              ? "bg-blue-500 text-white"
-              : "bg-gray-700 text-white"
+              ? "bg-red-500 text-white"
+              : "bg-gray-700 text-white hover:bg-red-500"
           }`}
         >
           {page}
@@ -65,17 +57,9 @@ const Pagination: FC<PaginationProps> = ({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="bg-gray-700 text-white px-3 py-1 rounded"
+        className="bg-gray-700 text-white px-3 py-1 rounded hover:bg-red-500 disabled:bg-gray-600 transition-colors duration-300"
       >
         Próximo
-      </button>
-
-      <button
-        onClick={() => onPageChange(totalPages)}
-        disabled={currentPage === totalPages}
-        className="bg-gray-700 text-white px-3 py-1 rounded"
-      >
-        {">>"}
       </button>
     </div>
   );

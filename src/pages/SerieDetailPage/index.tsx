@@ -1,11 +1,6 @@
 import { useParams } from "react-router-dom";
 import { LoadingSpin } from "../../components/Loading";
-import { useMovieDetail } from "../../hooks/use-movies";
-
-const formatCurrency = (amount: number) =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
-    amount
-  );
+import { useSerieDetail } from "../../hooks/use-series";
 
 const formatDate = (date: string) =>
   new Intl.DateTimeFormat("pt-BR", {
@@ -14,72 +9,67 @@ const formatDate = (date: string) =>
     day: "numeric",
   }).format(new Date(date));
 
-const MovieDetailPage = () => {
+const SerieDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const { data: movie, isLoading, error } = useMovieDetail(Number(id));
+  const { data: series, isLoading, error } = useSerieDetail(Number(id));
 
   if (isLoading) return <LoadingSpin />;
   if (error) return <div>{error.message}</div>;
 
   return (
     <div className="bg-gray-800 min-h-screen py-8 fade-in rounded-3xl">
-      {movie && (
+      {series && (
         <div className="max-w-5xl mx-auto text-white p-6 space-y-8">
           <div className="text-center space-y-2">
-            <h1 className="text-4xl font-bold mb-2">{movie.title}</h1>
-            {movie.tagline && (
-              <p className="italic text-lg text-gray-400">{movie.tagline}</p>
+            <h1 className="text-4xl font-bold mb-2">{series.name}</h1>
+            {series.tagline && (
+              <p className="italic text-lg text-gray-400">{series.tagline}</p>
             )}
           </div>
 
           <hr className="border-gray-700" />
 
           <div className="flex flex-col md:flex-row gap-8 items-start fade-in">
-            {movie.poster_path && (
+            {series.poster_path && (
               <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
+                src={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
+                alt={series.name}
                 className="w-full md:w-80 h-auto max-h-96 object-cover rounded-lg shadow-lg"
               />
             )}
 
             <div className="space-y-4">
-              {movie.overview && (
+              {series.overview && (
                 <p className="text-lg overflow-wrap break-words">
-                  {movie.overview}
+                  {series.overview}
                 </p>
               )}
               <div className="flex flex-col space-y-1">
-                {movie.vote_average && (
+                {series.vote_average && (
                   <p className="text-lg font-semibold">
-                    Nota: {movie.vote_average.toFixed(1)} / 10
+                    Nota: {series.vote_average.toFixed(1)} / 10
                   </p>
                 )}
-                {movie.vote_count && (
+                {series.vote_count && (
                   <p className="text-gray-400">
-                    Votos: {movie.vote_count.toLocaleString()}
+                    Votos: {series.vote_count.toLocaleString()}
                   </p>
                 )}
-                {movie.runtime && (
+                {series.status && (
                   <p className="text-gray-400">
-                    <strong>Duração:</strong> {movie.runtime} minutos
+                    <strong>Status:</strong> {series.status}
                   </p>
                 )}
-                {movie.status && (
+                {series.first_air_date && (
                   <p className="text-gray-400">
-                    <strong>Status:</strong> {movie.status}
+                    <strong>Data de Estreia:</strong>{" "}
+                    {formatDate(series.first_air_date)}
                   </p>
                 )}
-                {movie.release_date && (
-                  <p className="text-gray-400">
-                    <strong>Data de Lançamento:</strong>{" "}
-                    {formatDate(movie.release_date)}
-                  </p>
-                )}
-                {movie.original_language && (
+                {series.original_language && (
                   <p className="text-gray-400">
                     <strong>Idioma Original:</strong>{" "}
-                    {movie.original_language.toUpperCase()}
+                    {series.original_language.toUpperCase()}
                   </p>
                 )}
               </div>
@@ -90,69 +80,57 @@ const MovieDetailPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gray-700 p-6 rounded-lg shadow-md space-y-2">
-              {movie.genres && movie.genres.length > 0 && (
+              {series.genres && series.genres.length > 0 && (
                 <p>
                   <strong>Gêneros:</strong>{" "}
-                  {movie.genres.map((genre) => genre.name).join(", ")}
+                  {series.genres.map((genre) => genre.name).join(", ")}
                 </p>
               )}
-              {movie.budget > 0 && (
+              {series.popularity && (
                 <p>
-                  <strong>Orçamento:</strong> {formatCurrency(movie.budget)}
+                  <strong>Popularidade:</strong> {series.popularity.toFixed(2)}
                 </p>
               )}
-              {movie.revenue > 0 && (
+              {series.origin_country && series.origin_country.length > 0 && (
                 <p>
-                  <strong>Receita:</strong> {formatCurrency(movie.revenue)}
+                  <strong>Países de Origem:</strong>{" "}
+                  {series.origin_country.join(", ")}
                 </p>
               )}
-              {movie.popularity && (
-                <p>
-                  <strong>Popularidade:</strong> {movie.popularity.toFixed(2)}
-                </p>
-              )}
-              {movie.production_countries &&
-                movie.production_countries.length > 0 && (
-                  <p>
-                    <strong>Países de Produção:</strong>{" "}
-                    {movie.production_countries
-                      .map((country) => country.name)
-                      .join(", ")}
-                  </p>
-                )}
             </div>
 
             <div className="bg-gray-700 p-6 rounded-lg shadow-md space-y-2">
-              {movie.spoken_languages && movie.spoken_languages.length > 0 && (
-                <p>
-                  <strong>Idiomas Falados:</strong>{" "}
-                  {movie.spoken_languages
-                    .map((lang) => lang.english_name)
-                    .join(", ")}
-                </p>
-              )}
-              {movie.homepage && (
+              {series.spoken_languages &&
+                series.spoken_languages.length > 0 && (
+                  <p>
+                    <strong>Idiomas Falados:</strong>{" "}
+                    {series.spoken_languages
+                      .map((lang) => lang.english_name)
+                      .join(", ")}
+                  </p>
+                )}
+              {series.homepage && (
                 <p className="truncate">
                   <strong>Site Oficial:</strong>{" "}
                   <a
-                    href={movie.homepage}
+                    href={series.homepage}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 underline break-all"
                   >
-                    {movie.homepage}
+                    {series.homepage}
                   </a>
                 </p>
               )}
             </div>
           </div>
 
-          {movie.production_companies &&
-            movie.production_companies.length > 0 && (
+          {series.production_companies &&
+            series.production_companies.length > 0 && (
               <div>
                 <h2 className="text-2xl font-bold mb-4">Produtoras</h2>
                 <div className="flex flex-wrap gap-4">
-                  {movie.production_companies.map((company) => (
+                  {series.production_companies.map((company) => (
                     <div
                       key={company.id}
                       className="flex items-center space-x-2 bg-gray-700 p-3 rounded-lg shadow-md fade-in break-words"
@@ -169,4 +147,4 @@ const MovieDetailPage = () => {
   );
 };
 
-export default MovieDetailPage;
+export default SerieDetailPage;
