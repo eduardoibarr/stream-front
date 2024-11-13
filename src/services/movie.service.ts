@@ -19,3 +19,15 @@ export const fetchMovieById = async (id: number): Promise<Movie> => {
   const response = await axios.get(`${apiUrl}/${id}`);
   return response.data;
 };
+
+export const searchMovie = async (
+  query: string
+): Promise<MovieListResponse> => {
+  const response = await axios.get(`${apiUrl}/search`, {
+    params: {
+      query,
+    },
+  });
+
+  return response.data;
+};

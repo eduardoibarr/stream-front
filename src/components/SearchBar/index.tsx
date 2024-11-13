@@ -2,9 +2,10 @@ import { FC, FormEvent, useState } from "react";
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
+  type?: "movie" | "tv";
 }
 
-const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
+const SearchBar: FC<SearchBarProps> = ({ onSearch, type }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSubmit = (event: FormEvent) => {
@@ -22,7 +23,7 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Pesquisar filmes..."
+          placeholder={`Buscar por ${type === "movie" ? "filmes" : "séries"}`}
           className="w-full py-3 pl-5 pr-16 rounded-full border-none outline-none bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-red-500 transition duration-300 ease-in-out shadow-md"
         />
         <button
