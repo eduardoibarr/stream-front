@@ -1,50 +1,69 @@
-# React + TypeScript + Vite
+# Projeto Stream
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é um front-end construído usando Vite, configurado para comunicação com uma API através de requisições autenticadas. Ele inclui configurações de autenticação básica, uso de variáveis de ambiente e estrutura organizada para componentes e hooks.
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Vite** - Ferramenta de build rápida para desenvolvimento front-end
+- **React** - Biblioteca JavaScript para criação de interfaces de usuário
+- **TypeScript** - Superset de JavaScript com tipagem estática opcional
+- **Axios** - Cliente HTTP para consumo de APIs
+- **React Query** - Gerenciamento de estado para requisições assíncronas
+- **Tailwind CSS** - Framework de CSS utilitário para estilos rápidos e responsivos
 
-## Expanding the ESLint configuration
+## Requisitos
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Node.js
+- NPM
 
-- Configure the top-level `parserOptions` property like this:
+## Instalação
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clone o repositório:
+
+   ```bash
+   git clone https://github.com/eduardoibarr/stream-front.git
+   ```
+
+2. Acesse a pasta do projeto:
+
+   ```bash
+   cd stream-front
+   ```
+
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
+   ou
+   ```bash
+   yarn
+   ```
+
+## Configuração de Variáveis de Ambiente
+
+Este projeto utiliza variáveis de ambiente para a configuração da API. Crie um arquivo \`.env\` na raiz do projeto e defina as seguintes variáveis:
+
+```plaintext
+VITE_API_URL=exemplo
+VITE_APP_API_USERNAME=exemplo
+VITE_APP_API_PASSWORD=exemplo
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Scripts Disponíveis
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+No diretório do projeto, você pode executar:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- \`npm run dev\` - Executa o aplicativo em modo de desenvolvimento.\
+  Abra [http://localhost:3000](http://localhost:3000) para visualizar no navegador.
+- \`npm run build\` - Compila o aplicativo para produção na pasta \`dist\`.
+- \`npm run serve\` - Serve o aplicativo compilado a partir da pasta \`dist\`.
+
+## Estilos
+
+O projeto utiliza **Tailwind CSS** para estilos rápidos e responsivos. As configurações de Tailwind podem ser encontradas no arquivo \`tailwind.config.js\`.
+
+## Contato
+
+Para dúvidas ou sugestões, entre em contato com [comigo](mailto:eduardoibarr56@gmail.com).
+
+---
