@@ -54,7 +54,7 @@ VITE_APP_API_PASSWORD=exemplo
 No diretório do projeto, você pode executar:
 
 - \`npm run dev\` - Executa o aplicativo em modo de desenvolvimento.\
-  Abra [http://localhost:3000](http://localhost:3000) para visualizar no navegador.
+  Abra [http://localhost:5173](http://localhost:5173) para visualizar no navegador.
 - \`npm run build\` - Compila o aplicativo para produção na pasta \`dist\`.
 - \`npm run serve\` - Serve o aplicativo compilado a partir da pasta \`dist\`.
 
