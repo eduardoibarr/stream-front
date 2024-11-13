@@ -35,29 +35,35 @@ const Pagination: FC<PaginationProps> = ({
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="bg-gray-700 text-white px-3 py-1 rounded hover:bg-red-500 disabled:bg-gray-600 transition-colors duration-300"
+        className="bg-gray-700 text-white px-2 md:px-3 py-1 rounded hover:bg-red-500 disabled:bg-gray-600 transition-colors duration-300"
       >
         Anterior
       </button>
 
-      {generatePageNumbers().map((page) => (
-        <button
-          key={page}
-          onClick={() => onPageChange(page)}
-          className={`px-3 py-1 rounded transition-colors duration-300 ${
-            page === currentPage
-              ? "bg-red-500 text-white"
-              : "bg-gray-700 text-white hover:bg-red-500"
-          }`}
-        >
-          {page}
-        </button>
-      ))}
+      <div className="hidden md:flex space-x-2">
+        {generatePageNumbers().map((page) => (
+          <button
+            key={page}
+            onClick={() => onPageChange(page)}
+            className={`px-2 py-1 rounded transition-colors duration-300 ${
+              page === currentPage
+                ? "bg-red-500 text-white"
+                : "bg-gray-700 text-white hover:bg-red-500"
+            }`}
+          >
+            {page}
+          </button>
+        ))}
+      </div>
+
+      <span className="md:hidden px-2 py-1 rounded bg-red-500 text-white">
+        {currentPage}
+      </span>
 
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="bg-gray-700 text-white px-3 py-1 rounded hover:bg-red-500 disabled:bg-gray-600 transition-colors duration-300"
+        className="bg-gray-700 text-white px-2 md:px-3 py-1 rounded hover:bg-red-500 disabled:bg-gray-600 transition-colors duration-300"
       >
         Próximo
       </button>

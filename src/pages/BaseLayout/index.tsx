@@ -19,7 +19,25 @@ const Header = () => {
   return (
     <header className="bg-gray-800 shadow-lg">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold text-red-500">
+        <Link
+          to="/"
+          className="flex items-center text-2xl font-bold text-red-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#ef4444"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="mr-2"
+          >
+            <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+          </svg>
           Stream
         </Link>
         <nav className="hidden md:flex space-x-6">
@@ -33,6 +51,7 @@ const Header = () => {
         <button
           className="md:hidden text-white focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
         >
           <svg
             className="w-6 h-6"
