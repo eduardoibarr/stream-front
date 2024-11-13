@@ -28,7 +28,7 @@ const HomePage = () => {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
-    arrows: true, // Ativa as setas de navegação
+    arrows: true,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 2 } },
       { breakpoint: 600, settings: { slidesToShow: 2, slidesToScroll: 1 } },
@@ -55,8 +55,6 @@ const HomePage = () => {
       </Link>
 
       <div className="overflow-visible max-w-full px-12 mb-12">
-        {" "}
-        {/* padding ajustado */}
         <Slider {...settings}>
           {movieData?.results.map((movie) => (
             <div

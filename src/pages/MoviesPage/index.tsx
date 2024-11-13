@@ -21,7 +21,6 @@ const MoviesPage = () => {
   } = useSearchMovie(query);
 
   const isSearching = query.trim() !== "";
-
   const handleSearch = (term: string) => {
     setQuery(term);
     setPage(1);
