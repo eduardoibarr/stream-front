@@ -40,14 +40,22 @@ const Header = () => {
           </svg>
           Stream
         </Link>
+
         <nav className="hidden md:flex space-x-6">
           <Link to="/movies/popular" className="hover:text-red-500">
             Filmes Populares
           </Link>
+          <Link to="/movies/discover" className="hover:text-red-500">
+            Descobrir Filmes
+          </Link>
           <Link to="/series/popular" className="hover:text-red-500">
             Séries Populares
           </Link>
+          <Link to="/series/discover" className="hover:text-red-500">
+            Descobrir Séries
+          </Link>
         </nav>
+
         <button
           className="md:hidden text-white focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
@@ -69,6 +77,7 @@ const Header = () => {
           </svg>
         </button>
       </div>
+
       {isOpen && (
         <nav className="md:hidden bg-gray-700">
           <ul className="space-y-4 p-4">
@@ -83,6 +92,15 @@ const Header = () => {
             </li>
             <li>
               <Link
+                to="/movies/discover"
+                className="block hover:text-red-500"
+                onClick={() => setIsOpen(false)}
+              >
+                Descobrir Filmes
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="/series/popular"
                 className="block hover:text-red-500"
                 onClick={() => setIsOpen(false)}
@@ -92,11 +110,11 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to="/profile"
+                to="/series/discover"
                 className="block hover:text-red-500"
                 onClick={() => setIsOpen(false)}
               >
-                Meu Perfil
+                Descobrir Séries
               </Link>
             </li>
           </ul>

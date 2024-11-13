@@ -84,7 +84,7 @@ const HomePage = () => {
         </h1>
       </Link>
 
-      <div className="overflow-visible max-w-full px-12">
+      <div className="overflow-visible max-w-full px-12 mb-12">
         <Slider {...settings}>
           {seriesData?.results.map((series) => (
             <div
@@ -106,6 +106,26 @@ const HomePage = () => {
             </div>
           ))}
         </Slider>
+      </div>
+
+      <div className="mt-16 text-center">
+        <h2 className="text-3xl font-bold text-white mb-8">
+          Procurando por algum filme ou série?
+        </h2>
+        <div className="flex flex-col md:flex-row justify-center md:space-x-8 space-y-4 md:space-y-0">
+          <Link
+            to="/movies/discover"
+            className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-md font-semibold transition-colors duration-300"
+          >
+            Descobrir Filmes
+          </Link>
+          <Link
+            to="/series/discover"
+            className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-md font-semibold transition-colors duration-300"
+          >
+            Descobrir Séries
+          </Link>
+        </div>
       </div>
     </div>
   );
