@@ -1,12 +1,10 @@
-import axios from "axios";
 import { MovieListResponse, Movie, MovieParams } from "../interfaces/movie";
-
-const apiUrl = import.meta.env.VITE_API_URL + "/movies";
+import { instance } from "./instance.service";
 
 export const fetchPopularMovies = async (
   params: MovieParams
 ): Promise<MovieListResponse> => {
-  const response = await axios.get(`${apiUrl}/popular`, {
+  const response = await instance.get("/movies/popular", {
     params: {
       ...params,
     },
@@ -16,14 +14,14 @@ export const fetchPopularMovies = async (
 };
 
 export const fetchMovieById = async (id: number): Promise<Movie> => {
-  const response = await axios.get(`${apiUrl}/${id}`);
+  const response = await instance.get(`/movies/${id}`);
   return response.data;
 };
 
 export const searchMovie = async (
   query: string
 ): Promise<MovieListResponse> => {
-  const response = await axios.get(`${apiUrl}/search`, {
+  const response = await instance.get("/movies/search", {
     params: {
       query,
     },

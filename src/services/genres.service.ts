@@ -1,14 +1,12 @@
-import axios from "axios";
 import { Genre } from "../interfaces/movie";
-
-const apiUrl = import.meta.env.VITE_API_URL + "/genres";
+import { instance } from "./instance.service";
 
 export const fetchMovieGenres = async () => {
-  const response = await axios.get<Genre[]>(`${apiUrl}/movie`);
+  const response = await instance.get<Genre[]>("/genres/movie");
   return response.data;
 };
 
 export const fetchSerieGenres = async () => {
-  const response = await axios.get<Genre[]>(`${apiUrl}/serie`);
+  const response = await instance.get<Genre[]>("/genres/serie");
   return response.data;
 };
